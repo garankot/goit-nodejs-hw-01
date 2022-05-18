@@ -1,1 +1,5 @@
-console.log("Hello node.js! uuuhuuu");
+const contacts = require("./contacts");
+
+console.log(contacts);
+
+// module.exports = {};
