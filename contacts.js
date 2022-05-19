@@ -1,13 +1,14 @@
 const fs = require("fs/promises");
 const path = require("path");
 
-const contactsPath = path.join(__dirname, "contacts.json");
+const contactsPath = path.join(__dirname, "./db/contacts.json");
 console.log(contactsPath);
 
 // TODO: задокументировать каждую функцию
 const listContacts = async () => {
   const data = await fs.readFile(contactsPath);
   const contData = JSON.parse(data);
+  console.log(contData);
   return contData;
 };
 
