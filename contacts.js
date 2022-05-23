@@ -1,28 +1,44 @@
 const fs = require("fs/promises");
 const path = require("path");
+const uuid = require("uuid");
 
 const contactsPath = path.join(__dirname, "./db/contacts.json");
-console.log(contactsPath);
 
 // TODO: задокументировать каждую функцию
 const listContacts = async () => {
-  const data = await fs.readFile(contactsPath);
-  const contData = JSON.parse(data);
-  console.log(contData);
-  return contData;
+  try {
+    const data = await fs.readFile(contactsPath, "utf-8");
+    const contData = JSON.parse(data);
+    return contData;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
-function getContactById(contactId) {
-  fs.readFile(contactId, [id]);
-}
+// listContacts();
 
-function addContact(name, email, phone) {
-  // ...твой код
-}
+const getContactById = async (id) => {
+  try {
+    const allContacts = await listContacts();
+    const contact = allContacts.find((contact) => contact.id === id);
+    return contact ? contact : null;
+  } catch (error) {
+    console.error(error);
+  }
+};
 
-function removeContact(contactId) {
-  fs.unlink(path, callback);
-}
+const addContact = async (name, email, phone) => {
+  try {
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const removeContact = async (contactId) => {
+  try {
+    await fs.unlink(path, callback);
+  } catch (error) {}
+};
 
 module.exports = {
   listContacts,
