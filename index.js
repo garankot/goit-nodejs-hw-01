@@ -1,23 +1,29 @@
-const contacts = require("./contacts");
-const argv = require("yargs").argv;
-// TODO: рефакторить
+const operations = require("./contacts");
+const yargs = require("yargs");
+// const argv = require("yargs").argv;
+const { hideBin } = require("yargs/helpers");
+const { argv } = yargs(hideBin(process.argv));
+
 const invokeAction = async ({ action, id, name, email, phone }) => {
   switch (action) {
     case "list":
-      const data = await contacts.listContacts();
+      const data = await operations.listContacts();
       console.log("listContacts", data);
       break;
 
     case "get":
-      // ... id
+      const contactById = await operations.getContactById(id);
+      console.log("contactById", contactById);
       break;
 
     case "add":
-      // ... name email phone
+      const addNewContact = await operations.addContact(name, email, phone);
+      console.log("addContact", addNewContact);
       break;
 
     case "remove":
-      // ... id
+      const deleteContactById = await operations.removeContact(id);
+      console.log("deletedContact", deleteContactById);
       break;
 
     default:
@@ -26,4 +32,3 @@ const invokeAction = async ({ action, id, name, email, phone }) => {
 };
 
 invokeAction(argv);
-//написати функцію яка викликає listContacts, getContactById, removeContact, addContact
