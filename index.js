@@ -1,8 +1,8 @@
 const operations = require("./contacts");
-const yargs = require("yargs");
-// const argv = require("yargs").argv;
-const { hideBin } = require("yargs/helpers");
-const { argv } = yargs(hideBin(process.argv));
+const yargs = require("yargs/yargs");
+const argv = require("yargs").argv;
+// const { hideBin } = require("yargs/helpers");
+// const { argv } = yargs(hideBin(process.argv));
 
 const invokeAction = async ({ action, id, name, email, phone }) => {
   switch (action) {

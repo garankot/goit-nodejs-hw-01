@@ -18,25 +18,25 @@ const listContacts = async () => {
 const getContactById = async (id) => {
   try {
     const allContacts = await listContacts();
-    const contact = allContacts.find((contact) => contact.id === id);
-    console.log(contact);
+    const contact = await allContacts.find(
+      (contact) => contact.id === (id = String(id))
+    );
     return contact ? contact : null;
   } catch (error) {
     console.error(error.message);
   }
 };
-getContactById(('48bd1cd8-72ca-42cc-8457-156bb8c30873').then(value => console.log(value)););
+// getContactById("10").then((value) => console.log(value));
 
 const addContact = async (name, email, phone) => {
   try {
     const newContact = {
-      id: id,
+      id: uuid.v4(),
       name: name,
       email: email,
       phone: phone,
     };
     const allContacts = await listContacts();
-    console.log(allContacts);
     allContacts.push(newContact);
     await fs.writeFile(contactsPath, JSON.stringify(allContacts));
   } catch (error) {
@@ -48,7 +48,9 @@ const addContact = async (name, email, phone) => {
 const removeContact = async (id) => {
   try {
     const allContacts = await listContacts();
-    const index = allContacts.findIndex((contact) => contact.id === id);
+    const index = allContacts.findIndex(
+      (contact) => contact.id === (id = String(id))
+    );
     const deletedContact = allContacts[index];
     if (index !== -1) {
       allContacts.splice(index, 1);
