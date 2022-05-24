@@ -18,7 +18,7 @@ const listContacts = async () => {
 const getContactById = async (id) => {
   try {
     const allContacts = await listContacts();
-    const contact = await allContacts.find(
+    const contact = allContacts.find(
       (contact) => contact.id === (id = String(id))
     );
     return contact ? contact : null;
