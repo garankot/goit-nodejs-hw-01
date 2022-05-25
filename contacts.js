@@ -26,7 +26,7 @@ const getContactById = async (id) => {
     console.error(error.message);
   }
 };
-// getContactById("10").then((value) => console.log(value));
+// getContactById("10")
 
 const addContact = async (name, email, phone) => {
   try {
